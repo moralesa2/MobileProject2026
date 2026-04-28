@@ -1,3 +1,5 @@
+////// REFACTOR TO WORK WITH APPWRITE //////
+
 import React, { createContext, useState, useEffect } from "react";
 // data storage & management
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -62,7 +64,7 @@ export const EventsProvider = ({ children }) => {
       try {
         const updatedEvents = prevEvents.map((event) =>
           // finds event with given id and overwrites w/updated event info
-          event.id === id ? { ...event, ...updatedEvent } : event
+          event.id === id ? { ...event, ...updatedEvent } : event,
         );
         storeEvents(updatedEvents);
         return updatedEvents;
