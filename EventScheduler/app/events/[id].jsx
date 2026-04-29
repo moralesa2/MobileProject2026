@@ -4,7 +4,7 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { EventsContext } from "@/contexts/EventsContext";
 //custom components
 import AppText from "@/components/AppText";
-import BottomNav from "@/components/BottomNav";
+import AppView from "@/components/AppView";
 // choice confirmation
 import { ConfirmDialog } from "react-native-simple-dialogs";
 
@@ -52,8 +52,9 @@ export default function EventDetails() {
   //#endregion
 
   //#region Page View
+  // TODO: add edit button which toggles text input avilability to protect from accidental edits
   return (
-    <View style={styles.container}>
+    <AppView>
       {event ? (
         <View style={styles.content}>
           <AppText style={styles.title}>Edit Event</AppText>
@@ -147,8 +148,7 @@ export default function EventDetails() {
       ) : (
         <AppText>Event not found</AppText>
       )}
-      <BottomNav />
-    </View>
+    </AppView>
   );
   //#endregion
 }

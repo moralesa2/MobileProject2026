@@ -2,7 +2,7 @@ import { Stack } from "expo-router";
 import { StyleSheet } from "react-native";
 import { router } from "expo-router";
 import EventsProvider from "@/contexts/EventsContext";
-import { HeaderBackButton } from "@react-navigation/elements";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function RootLayout() {
   return (
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 const defaultOptions = {
   headerShown: true,
   headerTitleAlign: "center",
+  headerBackVisible: false,
   headerStyle: styles.headerContainer,
   headerTitleStyle: styles.headerText,
-  backButtonEnabled: false,
 };

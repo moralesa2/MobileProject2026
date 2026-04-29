@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { router } from "expo-router";
 import AppText from "./AppText";
+import AppView from "./AppView";
 
 export default function BottomNav() {
   return (
@@ -36,6 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#4a86e8",
     flexDirection: "row",
     padding: 20,
+    paddingBottom: 30,
     width: "100%",
     justifyContent: "space-around",
     alignItems: "center",

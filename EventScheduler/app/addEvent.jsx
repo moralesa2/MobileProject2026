@@ -3,7 +3,7 @@ import { View, TextInput, Button, Text, StyleSheet } from "react-native";
 import { EventsContext } from "@/contexts/EventsContext";
 import { router } from "expo-router";
 import { Keyboard } from "react-native";
-import BottomNav from "@/components/BottomNav";
+import AppView from "@/components/AppView";
 
 export default function AddEvent() {
   const { addEvent } = useContext(EventsContext);
@@ -45,8 +45,8 @@ export default function AddEvent() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Add New Event</Text>
+    <AppView>
+      {/*<Text style={styles.title}>Add New Event</Text>*/}
       <View style={{ flex: 1, padding: 20 }}>
         <TextInput
           placeholder="Enter Title"
@@ -95,8 +95,7 @@ export default function AddEvent() {
           <Text style={styles.errorText}>Please fill out all fields.</Text>
         ) : null}
       </View>
-      <BottomNav />
-    </View>
+    </AppView>
   );
 }
 
