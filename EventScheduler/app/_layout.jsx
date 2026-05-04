@@ -3,41 +3,55 @@ import { StyleSheet } from "react-native";
 import { router } from "expo-router";
 import EventsProvider from "@/contexts/EventsContext";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { useAuth, AuthProvider } from "@/contexts/AuthContext";
+import { HeaderBackButton, HeaderButton } from "@react-navigation/elements";
+
+/*const HeaderLogout = () => {
+  const { user, logout } = useAuth();
+
+  return user ? (
+    <TouchableOpacity style={styles.logoutButton} onPress={logout}>
+      <Text style={styles.logoutText}>Logout</Text>
+    </TouchableOpacity>
+  ) : null;
+}; */
 
 export default function RootLayout() {
   return (
-    <EventsProvider>
-      <Stack>
-        <Stack.Screen
-          name="index"
-          options={{
-            title: "Events",
-            ...defaultOptions,
-          }}
-        />
-        <Stack.Screen
-          name="events/[id]"
-          options={{
-            title: "Event Details",
-            ...defaultOptions,
-          }}
-        />
-        <Stack.Screen
-          name="addEvent"
-          options={{
-            title: "Add Event",
-            ...defaultOptions,
-          }}
-        />
-        <Stack.Screen
-          name="calendar"
-          options={{
-            title: "Calendar",
-            ...defaultOptions,
-          }}
-        />
-      </Stack>
-    </EventsProvider>
+    <AuthProvider>
+      <EventsProvider>
+        <Stack>
+          <Stack.Screen
+            name="index"
+            options={{
+              title: "Events",
+              ...defaultOptions,
+            }}
+          />
+          <Stack.Screen
+            name="events/[id]"
+            options={{
+              title: "Event Details",
+              ...defaultOptions,
+            }}
+          />
+          <Stack.Screen
+            name="addEvent"
+            options={{
+              title: "Add Event",
+              ...defaultOptions,
+            }}
+          />
+          <Stack.Screen
+            name="calendar"
+            options={{
+              title: "Calendar",
+              ...defaultOptions,
+            }}
+          />
+        </Stack>
+      </EventsProvider>
+    </AuthProvider>
   );
 }
 
