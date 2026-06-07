@@ -40,7 +40,7 @@ const HomeScreen = () => {
         style={styles.button}
         onPress={() => router.push("/events")}
       >
-        <Text style={styles.buttonText}>Get Started</Text>
+        <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
     </View>
   );

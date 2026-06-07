@@ -44,8 +44,8 @@ export default function Events() {
               }}
             >
               <AppText style={styles.eventTitle}>{event.title}</AppText>
+              <AppText style={styles.eventDetails}>{event.location}</AppText>
             </TouchableOpacity>
-            <AppText style={undefined}>{event.location}</AppText>
           </View>
         ))}
       </View>
@@ -64,16 +64,22 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     padding: 10,
     marginHorizontal: 20,
+    marginTop: 10,
     borderRadius: 5,
   },
   eventTitleContainer: {
     alignItems: "center",
     justifyContent: "start",
     width: "100%",
+    fontSize: 24,
+    paddingBottom: 5,
   },
   eventTitle: {
     fontSize: 24,
     paddingBottom: 5,
+  },
+  eventDetails: {
+    fontSize: 16,
   },
   inputError: {
     fontSize: 14,

@@ -6,7 +6,7 @@ const events = [
   {
     id: id1,
     title: "Event 1",
-    date: "2026-08-08",
+    date: "2026-06-18",
     time: "10:00 AM",
     location: "123 Main St, Springfield",
     description: "This is a sample event description for Event 1.",
@@ -14,7 +14,7 @@ const events = [
   {
     id: id2,
     title: "Event 2",
-    date: "2026-08-09",
+    date: "2026-06-25",
     time: "2:00 PM",
     location: "456 Elm St, Springfield",
     description: "This is a sample event description for Event 2.",

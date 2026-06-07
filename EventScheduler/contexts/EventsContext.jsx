@@ -86,6 +86,7 @@ export const EventsProvider = ({ children }) => {
   //#region Event Methods
   const addEvent = async (newEvent) => {
     const id = Crypto.randomUUID();
+    console.log(`Adding event with ID: ${id}`);
     try {
       await db.runAsync(
         `INSERT INTO events (id, title, date, time, location, description)
@@ -99,6 +100,7 @@ export const EventsProvider = ({ children }) => {
           newEvent.description,
         ],
       );
+      console.log("Event added successfully.");
       await loadEvents();
     } catch (error) {
       console.log(`Problem adding event: ${error}`);
