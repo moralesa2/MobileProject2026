@@ -1,6 +1,10 @@
+import * as Crypto from "expo-crypto";
+const id1 = Crypto.randomUUID();
+const id2 = Crypto.randomUUID();
+
 const events = [
   {
-    id: "1",
+    id: id1,
     title: "Event 1",
     date: "2026-08-08",
     time: "10:00 AM",
@@ -8,7 +12,7 @@ const events = [
     description: "This is a sample event description for Event 1.",
   },
   {
-    id: "2",
+    id: id2,
     title: "Event 2",
     date: "2026-08-09",
     time: "2:00 PM",

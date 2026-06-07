@@ -52,7 +52,7 @@ export default function EventDetails() {
   //#endregion
 
   //#region Page View
-  // TODO: add edit button which toggles text input avilability to protect from accidental edits
+  // TODO: add edit button which toggles text input avilability
   return (
     <AppView>
       {event ? (
