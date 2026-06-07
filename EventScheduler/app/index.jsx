@@ -1,36 +1,26 @@
-import React, { useContext, useEffect } from "react";
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Platform,
-  ActivityIndicator,
-} from "react-native";
-import { useRouter } from "expo-router";
-import { EventsContext } from "@/contexts/EventsContext";
-import events from "../data/seedEvents";
-// custom components
-import AppText from "@/components/AppText";
-import AppView from "@/components/AppView";
+import CalendarImage from "@/assets/images/calendar.png";
 import { useAuth } from "@/contexts/AuthContext";
+import { useRouter } from "expo-router";
+import { useEffect } from "react";
+import {
+  ActivityIndicator,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import "react-native-url-polyfill/auto";
 
-export default function Events() {
-  //const { events } = useContext(EventsContext);
+const HomeScreen = () => {
+  const { user, loading } = useAuth();
   const router = useRouter();
-  const event = events[0]; // setup; display first event in seeded data
-  const { user, loading: authLoading, loading } = useAuth();
 
-  /* useEffect(() => {
-    if (!authLoading && !user) {
-      router.replace("./auth/login");
-    }
-  }, [user, authLoading]); */
-
-  /* useEffect(() => {
+  useEffect(() => {
     if (!loading && user) {
-      router.replace("/");
+      router.replace("/events");
     }
-  }, [user, loading]); */
+  }, [user, loading]);
 
   if (loading) {
     return (
@@ -41,51 +31,65 @@ export default function Events() {
   }
 
   return (
-    <AppView>
-      <View style={styles.content}>
-        <View style={styles.eventContainer}>
-          <TouchableOpacity
-            style={styles.eventTitleContainer}
-            onPress={() => {
-              router.push(`./events/${event.id}`);
-            }}
-          >
-            <AppText style={styles.eventTitle}>{event.title}</AppText>
-          </TouchableOpacity>
-          <AppText style={undefined}>{event.location}</AppText>
-        </View>
-      </View>
-    </AppView>
+    <View style={styles.container}>
+      <Image source={CalendarImage} style={styles.image} />
+      <Text style={styles.title}>Welcome To Events App</Text>
+      <Text style={styles.subtitle}>Manage your events anytime, anywhere.</Text>
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => router.push("/events")}
+      >
+        <Text style={styles.buttonText}>Get Started</Text>
+      </TouchableOpacity>
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  content: {
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  eventContainer: {
-    backgroundColor: "white",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    padding: 10,
-    marginHorizontal: 20,
-    borderRadius: 5,
-  },
-  eventTitleContainer: {
+  container: {
+    flex: 1,
+    justifyContent: "center",
     alignItems: "center",
-    justifyContent: "start",
-    width: "100%",
+    padding: 20,
+    backgroundColor: "#f8f9fa",
   },
-  eventTitle: {
-    fontSize: 24,
-    paddingBottom: 5,
+  image: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+    borderRadius: 10,
   },
-  inputError: {
-    fontSize: 14,
-    color: "#3B1C32",
-    paddingHorizontal: 10,
-    textAlign: "right",
-    alignSelf: "stretch",
+  title: {
+    fontSize: 28,
+    fontWeight: "bold",
+    marginBottom: 10,
+    color: "#333",
+  },
+  subtitle: {
+    fontSize: 16,
+    color: "#666",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: "#007bff",
+    paddingVertical: 12,
+    paddingHorizontal: 25,
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  centeredContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
   },
 });
+
+export default HomeScreen;

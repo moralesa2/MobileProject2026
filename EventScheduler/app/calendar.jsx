@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   calendar: {
     borderWidth: 1,
     borderColor: "gray",
-    marginHorizontal: 10,
+    marginHorizontal: 0,
   },
 });
 

@@ -1,28 +1,41 @@
 import { Stack } from "expo-router";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { router } from "expo-router";
 import EventsProvider from "@/contexts/EventsContext";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useAuth, AuthProvider } from "@/contexts/AuthContext";
 import { HeaderBackButton, HeaderButton } from "@react-navigation/elements";
+import AppText from "@/components/AppText";
 
-/*const HeaderLogout = () => {
+const HeaderLogout = () => {
   const { user, logout } = useAuth();
 
   return user ? (
     <TouchableOpacity style={styles.logoutButton} onPress={logout}>
-      <Text style={styles.logoutText}>Logout</Text>
+      <AppText style={styles.logoutText}>Logout</AppText>
     </TouchableOpacity>
   ) : null;
-}; */
+};
 
 export default function RootLayout() {
   return (
     <AuthProvider>
       <EventsProvider>
-        <Stack>
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            headerRight: () => <HeaderLogout />,
+          }}
+        >
           <Stack.Screen
             name="index"
+            options={{
+              title: "Home Screen",
+              ...defaultOptions,
+            }}
+          />
+          <Stack.Screen
+            name="events/index"
             options={{
               title: "Events",
               ...defaultOptions,
@@ -63,6 +76,17 @@ const styles = StyleSheet.create({
   headerText: {
     color: "white",
     fontSize: 30,
+  },
+  logoutButton: {
+    backgroundColor: "#dc3545",
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 4,
+  },
+  logoutText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
 

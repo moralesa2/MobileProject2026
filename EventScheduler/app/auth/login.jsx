@@ -46,7 +46,7 @@ const AuthScreen = () => {
       return;
     }
 
-    router.replace("./");
+    router.replace("/events");
   };
 
   return (
