@@ -3,6 +3,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import BottomNav from "./BottomNav";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 /* AppText properties:
     children: nested content (text)

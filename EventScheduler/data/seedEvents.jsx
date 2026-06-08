@@ -4,7 +4,7 @@ const events = [
     title: "Event 1",
     date: "2026-08-08",
     time: "10:00 AM",
-    location: "123 Main St, Springfield",
+    location: "67 Oakway Ctr, Eugene, OR 97401",
     description: "This is a sample event description for Event 1.",
   },
   {
@@ -12,7 +12,7 @@ const events = [
     title: "Event 2",
     date: "2026-08-09",
     time: "2:00 PM",
-    location: "456 Elm St, Springfield",
+    location: "1170 Highway 99 N, Eugene, OR 97402-2013",
     description: "This is a sample event description for Event 2.",
   },
 ];
