@@ -18,7 +18,6 @@ export default function EventDetails() {
   //#region constants
   const { id } = useLocalSearchParams();
   const { events, updateEvent } = useContext(EventsContext);
-  const [dialogVisible, setDialogVisible] = useState(false);
   const router = useRouter();
 
   //#endregion
@@ -80,7 +79,13 @@ export default function EventDetails() {
             <Controller
               control={control}
               name="date"
-              rules={{ required: "Date is required" }}
+              rules={{
+                required: "Date is required",
+                pattern: {
+                  value: /^\d{4}-\d{2}-\d{2}$/,
+                  message: "Date must be in YYYY-MM-DD format",
+                },
+              }}
               render={({ field: { onChange, value } }) => (
                 <TextInput
                   value={value}
@@ -120,7 +125,6 @@ export default function EventDetails() {
             <Controller
               control={control}
               name="location"
-              rules={{ required: "Location is required" }}
               render={({ field: { onChange, value } }) => (
                 <TextInput
                   value={value}
@@ -156,17 +160,9 @@ export default function EventDetails() {
                 {errors.description.message}
               </AppText>
             )}
-
-            {/* Repeat similar blocks for date, time, location, description */}
           </ScrollView>
           <View>
-            <Button
-              title="Save"
-              onPress={() => {
-                handleSubmit(onSubmit);
-                router.push("/");
-              }}
-            />
+            <Button title="Save" onPress={handleSubmit(onSubmit)} />
             <Button
               title="Cancel"
               onPress={() => {
@@ -182,50 +178,6 @@ export default function EventDetails() {
   );
   //#endregion
 }
-
-/*
-<KeyboardAvoidingView
-        className="flex-1"
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
-        <ScrollView contentContainerClassName="px-6 py-8">
-          <Text className="text-2xl font-bold text-gray-800 mb-6">
-            Profile Settings
-          </Text>
-
-          <Text className="text-sm font-medium text-gray-600 mb-1">Username</Text>
-          <Controller
-            control={control}
-            name="username"
-            rules={{ required: "Username is required" }}
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                value={value}
-                onChangeText={onChange}
-                placeholder="Enter username"
-                autoCapitalize="none"
-                className="border border-gray-300 rounded-lg px-4 py-3 mb-1 text-gray-800"
-                placeholderTextColor="#9ca3af"
-              />
-            )}
-          />
-          {errors.username && (
-            <Text className="text-red-500 text-sm mb-3">
-              {errors.username.message}
-            </Text>
-          )}
-
-          <Pressable
-            onPress={handleSubmit(onSubmit)}
-            className="bg-violet-600 rounded-lg py-4 items-center mt-6"
-          >
-            <Text className="text-white font-bold">
-              {saved ? "Saved!" : "Save Settings"}
-            </Text>
-          </Pressable>
-        </ScrollView>
-      </KeyboardAvoidingView>
-*/
 
 const styles = StyleSheet.create({
   container: {

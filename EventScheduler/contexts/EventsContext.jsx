@@ -108,6 +108,7 @@ export const EventsProvider = ({ children }) => {
   };
 
   const updateEvent = async (id, updatedEvent) => {
+    console.log(`Updating event with ID: ${id}`);
     try {
       await db.runAsync(
         `UPDATE events SET title = ?, date = ?, time = ?, location = ?, description = ? WHERE id = ?;`,
@@ -120,6 +121,7 @@ export const EventsProvider = ({ children }) => {
           id,
         ],
       );
+      console.log("Event updated successfully.");
       await loadEvents();
     } catch (error) {
       console.log(`Problem updating event: ${error}`);

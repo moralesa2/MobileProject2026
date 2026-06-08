@@ -1,130 +1,198 @@
-import React, { useState, useContext } from "react";
-import { View, TextInput, Button, Text, StyleSheet } from "react-native";
+import React, { useContext, useState, useEffect } from "react";
+import {
+  KeyboardAvoidingView,
+  TextInput,
+  Button,
+  StyleSheet,
+  ScrollView,
+  View,
+} from "react-native";
+import { useRouter } from "expo-router";
 import { EventsContext } from "@/contexts/EventsContext";
-import { router } from "expo-router";
-import { Keyboard } from "react-native";
+import { Controller, useForm } from "react-hook-form";
+import AppText from "@/components/AppText";
 import AppView from "@/components/AppView";
 
 export default function AddEvent() {
-  const { addEvent } = useContext(EventsContext);
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
-  const [error, setError] = useState(false);
+  const { events, addEvent } = useContext(EventsContext);
+  const router = useRouter();
 
-  const handleSubmit = () => {
-    Keyboard.dismiss();
-    if (
-      title.trim() &&
-      description.trim() &&
-      date.trim() &&
-      time.trim() &&
-      location.trim()
-    ) {
-      const newEvent = {
-        id: Math.random().toString(),
-        title,
-        date,
-        time,
-        location,
-        description,
-      };
-      addEvent(newEvent);
-      setTitle("");
-      setDate("");
-      setTime("");
-      setDescription("");
-      setDescription("");
-      setError(false);
-      router.push("/");
-    } else {
-      setError(true);
-    }
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      title: "",
+      date: "",
+      time: "",
+      location: "",
+      description: "",
+    },
+  });
+
+  const onSubmit = (data) => {
+    addEvent(data);
+    router.replace(`/`);
   };
+  //#endregion
 
+  //#region Page View
+  // TODO: add edit button which toggles text input avilability to protect from accidental edits
   return (
     <AppView>
-      {/*<Text style={styles.title}>Add New Event</Text>*/}
-      <View style={{ flex: 1, padding: 20 }}>
-        <TextInput
-          placeholder="Enter Title"
-          value={title}
-          onChangeText={setTitle}
-          style={styles.inputBox}
-          multiline={true}
-          numberOfLines={2}
-        />
-        <TextInput
-          placeholder="Enter Date"
-          value={date}
-          onChangeText={setDate}
-          style={styles.inputBox}
-          multiline={true}
-          numberOfLines={1}
-        />
-        <TextInput
-          placeholder="Enter Time"
-          value={time}
-          onChangeText={setTime}
-          style={styles.inputBox}
-          multiline={true}
-          numberOfLines={1}
-        />
-        <TextInput
-          placeholder="Enter Location"
-          value={location}
-          onChangeText={setLocation}
-          style={styles.inputBox}
-          multiline={true}
-          numberOfLines={2}
-        />
-        <TextInput
-          placeholder="Enter Description"
-          value={description}
-          onChangeText={setDescription}
-          style={[styles.inputBox, { height: 100 }]}
-          multiline={true}
-          numberOfLines={4}
-        />
-        <View style={{ marginVertical: 15 }}>
-          <Button title="Add Event" color="#4a86e8" onPress={handleSubmit} />
+      <KeyboardAvoidingView style={styles.content}>
+        <ScrollView>
+          <AppText style={styles.title}>Edit Event</AppText>
+          <Controller
+            control={control}
+            name="title"
+            rules={{ required: "Title is required" }}
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                value={value}
+                onChangeText={onChange}
+                placeholder="Title"
+                autoCapitalize="words"
+                style={styles.eventText}
+                multiline={true}
+                numberOfLines={2}
+              />
+            )}
+          />
+          {errors.title && (
+            <AppText style={{ color: "red", marginBottom: 10 }}>
+              {errors.title.message}
+            </AppText>
+          )}
+
+          <Controller
+            control={control}
+            name="date"
+            rules={{
+              required: "Date is required",
+              pattern: {
+                value: /^\d{4}-\d{2}-\d{2}$/,
+                message: "Date must be in YYYY-MM-DD format",
+              },
+            }}
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                value={value}
+                onChangeText={onChange}
+                placeholder="Date"
+                style={styles.eventText}
+                multiline={true}
+                numberOfLines={2}
+              />
+            )}
+          />
+          {errors.date && (
+            <AppText style={{ color: "red", marginBottom: 10 }}>
+              {errors.date.message}
+            </AppText>
+          )}
+          <Controller
+            control={control}
+            name="time"
+            rules={{
+              required: "Time is required",
+            }}
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                value={value}
+                onChangeText={onChange}
+                placeholder="Time"
+                style={styles.eventText}
+                multiline={true}
+                numberOfLines={2}
+              />
+            )}
+          />
+          {errors.time && (
+            <AppText style={{ color: "red", marginBottom: 10 }}>
+              {errors.time.message}
+            </AppText>
+          )}
+          <Controller
+            control={control}
+            name="location"
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                value={value}
+                onChangeText={onChange}
+                placeholder="Location"
+                style={styles.eventText}
+                multiline={true}
+                numberOfLines={2}
+              />
+            )}
+          />
+          {errors.location && (
+            <AppText style={{ color: "red", marginBottom: 10 }}>
+              {errors.location.message}
+            </AppText>
+          )}
+          <Controller
+            control={control}
+            name="description"
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                value={value}
+                onChangeText={onChange}
+                placeholder="Description"
+                style={styles.eventText}
+                multiline={true}
+                numberOfLines={2}
+              />
+            )}
+          />
+          {errors.description && (
+            <AppText style={{ color: "red", marginBottom: 10 }}>
+              {errors.description.message}
+            </AppText>
+          )}
+        </ScrollView>
+        <View>
+          <Button title="Save" onPress={handleSubmit(onSubmit)} />
+          <Button
+            title="Cancel"
+            onPress={() => {
+              router.replace(`/`);
+            }}
+          />
         </View>
-        {error ? (
-          <Text style={styles.errorText}>Please fill out all fields.</Text>
-        ) : null}
-      </View>
+      </KeyboardAvoidingView>
     </AppView>
   );
+  //#endregion
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#d9ead3",
+    justifyContent: "center",
   },
-  footer: {
-    backgroundColor: "#4a86e8",
-    flexDirection: "row",
+  content: {
+    flex: 1,
     padding: 20,
-    width: "100%",
-  },
-  inputBox: {
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
-    backgroundColor: "white",
-    color: "rgba(0, 0, 0, 0.5)",
   },
   title: {
-    fontSize: 24,
-    alignSelf: "center",
-    marginTop: 10,
+    fontSize: 20,
+    paddingBottom: 5,
   },
-  errorText: {
-    fontSize: 18,
-    color: "red",
+  eventText: {
+    borderWidth: 1,
+    padding: 10,
+    marginBottom: 20,
+    borderRadius: 5,
+    fontSize: 20,
+    backgroundColor: "white",
+    textAlignVertical: "top",
   },
 });
+
+/* dialog guides: 
+1. https://www.npmjs.com/package/react-native-simple-dialogs#confirm-dialog
+2. https://andreadams.com.br/react-native-confirm-dialog-how-to-implement-in-your-app/ */
