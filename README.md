@@ -3,9 +3,9 @@
 App Description: App designed for creating & managing upcoming events; a planner meant for personal use.
 
 App Demo: https://youtu.be/FfdX7wvkgOM
-App Walkthrough:
+App Walkthrough: https://youtu.be/NsPqSZQFMHo
 
-Secrets (Google doc accessible to those with LCC email, email me at moralesa2@my.lanecc.edu if you can't see this doc. Copy & paste in your .env file before starting the app):
+Secrets (Google doc accessible to those with LCC email, email me at moralesa2@my.lanecc.edu if you can't see this doc. Copy & paste in your .env file before starting the app): https://docs.google.com/document/d/1_iyWFaZoIOmPliqy1SsliqTp_R-cwJjggIePj1UIZ10/edit?usp=sharing
 
 #
 
