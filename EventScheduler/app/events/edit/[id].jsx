@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import {
   KeyboardAvoidingView,
   TextInput,
-  Button,
+  TouchableOpacity,
   StyleSheet,
   ScrollView,
   View,
@@ -53,7 +53,6 @@ export default function EventDetails() {
       {event ? (
         <KeyboardAvoidingView style={styles.content}>
           <ScrollView>
-            <AppText style={styles.title}>Edit Event</AppText>
             <Controller
               control={control}
               name="title"
@@ -161,14 +160,21 @@ export default function EventDetails() {
               </AppText>
             )}
           </ScrollView>
-          <View>
-            <Button title="Save" onPress={handleSubmit(onSubmit)} />
-            <Button
-              title="Cancel"
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={handleSubmit(onSubmit)}
+            >
+              <AppText style={styles.buttonText}>Save</AppText>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
               onPress={() => {
-                router.push(`/events/${id}`);
+                router.replace(`/`);
               }}
-            />
+            >
+              <AppText style={styles.buttonText}>Cancel</AppText>
+            </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
       ) : (
@@ -201,6 +207,25 @@ const styles = StyleSheet.create({
     fontSize: 20,
     backgroundColor: "white",
     textAlignVertical: "top",
+  },
+  buttonContainer: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 5,
+  },
+  button: {
+    padding: 10,
+    width: "100%",
+    backgroundColor: "#4a86e8",
+    justifyContent: "space-between",
+    borderRadius: 5,
+  },
+  buttonText: {
+    textAlign: "center",
+    color: "white",
+    fontSize: 20,
+    fontWeight: "semi-bold",
   },
 });
 

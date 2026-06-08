@@ -15,7 +15,7 @@ export default function BottomNav() {
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
-          router.push(`/addEvent`);
+          router.push(`/events/addEvent`);
         }}
       >
         <AppText style={styles.text}>Add Event</AppText>
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#4a86e8",
     flexDirection: "row",
     padding: 20,
-    paddingBottom: 30,
+    paddingBottom: 40,
     width: "100%",
     justifyContent: "space-around",
     alignItems: "center",

@@ -5,7 +5,7 @@ const id2 = Crypto.randomUUID();
 const events = [
   {
     id: id1,
-    title: "Event 1",
+    title: "Breakfast At Mucho Gusto",
     date: "2026-06-18",
     time: "10:00 AM",
     location: "67 Oakway Ctr, Eugene, OR 97401",
@@ -13,7 +13,7 @@ const events = [
   },
   {
     id: id2,
-    title: "Event 2",
+    title: "Bowling",
     date: "2026-06-25",
     time: "2:00 PM",
     location: "1170 Highway 99 N, Eugene, OR 97402-2013",
@@ -22,5 +22,3 @@ const events = [
 ];
 
 export default events;
-
-// sample events from Eugene Weekly: https://calendar.eugeneweekly.com/calendars/all-events/

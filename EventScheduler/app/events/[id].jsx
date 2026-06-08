@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { View, TextInput, Button, StyleSheet } from "react-native";
+import { View, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { EventsContext } from "@/contexts/EventsContext";
 import MapView, { Marker } from "react-native-maps";
@@ -89,20 +89,24 @@ export default function EventDetails() {
               <Marker coordinate={coords} title={event.location} />
             </MapView>
           )}
-          <Button
-            title="Edit Event"
-            // show delete confirmation dialog
-            onPress={() => {
-              router.push(`./edit/${id}`);
-            }}
-          />
-          <Button
-            title="Delete Event"
-            // show delete confirmation dialog
-            onPress={() => {
-              setDialogVisible(true);
-            }}
-          />
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                setDialogVisible(true);
+              }}
+            >
+              <AppText style={styles.buttonText}>Delete Event</AppText>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                router.replace(`/events/edit/${id}`);
+              }}
+            >
+              <AppText style={styles.buttonText}>Edit Event</AppText>
+            </TouchableOpacity>
+          </View>
           <ConfirmDialog
             style={styles.dialog}
             title="Delete Event?"
@@ -117,7 +121,7 @@ export default function EventDetails() {
               onPress: () => {
                 // delete event after confirmation
                 handleDelete(id);
-                router.push("/");
+                router.replace("/");
               },
             }}
             negativeButton={{
@@ -163,6 +167,25 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 300,
     marginBottom: 20,
+  },
+  buttonContainer: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 5,
+  },
+  button: {
+    padding: 10,
+    width: "100%",
+    backgroundColor: "#4a86e8",
+    justifyContent: "space-between",
+    borderRadius: 5,
+  },
+  buttonText: {
+    textAlign: "center",
+    color: "white",
+    fontSize: 20,
+    fontWeight: "semi-bold",
   },
 });
 

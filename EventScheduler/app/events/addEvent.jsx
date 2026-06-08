@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ScrollView,
   View,
+  TouchableOpacity,
 } from "react-native";
 import { useRouter } from "expo-router";
 import { EventsContext } from "@/contexts/EventsContext";
@@ -16,6 +17,7 @@ import AppView from "@/components/AppView";
 export default function AddEvent() {
   const { events, addEvent } = useContext(EventsContext);
   const router = useRouter();
+  const placeholderTextColor = "rgba(0, 0, 0, 0.5)";
 
   const {
     control,
@@ -43,7 +45,6 @@ export default function AddEvent() {
     <AppView>
       <KeyboardAvoidingView style={styles.content}>
         <ScrollView>
-          <AppText style={styles.title}>Edit Event</AppText>
           <Controller
             control={control}
             name="title"
@@ -53,6 +54,7 @@ export default function AddEvent() {
                 value={value}
                 onChangeText={onChange}
                 placeholder="Title"
+                placeholderTextColor={placeholderTextColor}
                 autoCapitalize="words"
                 style={styles.eventText}
                 multiline={true}
@@ -80,7 +82,8 @@ export default function AddEvent() {
               <TextInput
                 value={value}
                 onChangeText={onChange}
-                placeholder="Date"
+                placeholder="Date (YYYY-MM-DD)"
+                placeholderTextColor={placeholderTextColor}
                 style={styles.eventText}
                 multiline={true}
                 numberOfLines={2}
@@ -103,6 +106,7 @@ export default function AddEvent() {
                 value={value}
                 onChangeText={onChange}
                 placeholder="Time"
+                placeholderTextColor={placeholderTextColor}
                 style={styles.eventText}
                 multiline={true}
                 numberOfLines={2}
@@ -122,6 +126,7 @@ export default function AddEvent() {
                 value={value}
                 onChangeText={onChange}
                 placeholder="Location"
+                placeholderTextColor={placeholderTextColor}
                 style={styles.eventText}
                 multiline={true}
                 numberOfLines={2}
@@ -141,6 +146,7 @@ export default function AddEvent() {
                 value={value}
                 onChangeText={onChange}
                 placeholder="Description"
+                placeholderTextColor={placeholderTextColor}
                 style={styles.eventText}
                 multiline={true}
                 numberOfLines={2}
@@ -153,14 +159,21 @@ export default function AddEvent() {
             </AppText>
           )}
         </ScrollView>
-        <View>
-          <Button title="Save" onPress={handleSubmit(onSubmit)} />
-          <Button
-            title="Cancel"
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={handleSubmit(onSubmit)}
+          >
+            <AppText style={styles.buttonText}>Save</AppText>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
             onPress={() => {
               router.replace(`/`);
             }}
-          />
+          >
+            <AppText style={styles.buttonText}>Cancel</AppText>
+          </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
     </AppView>
@@ -176,7 +189,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    padding: 20,
+    padding: 10,
   },
   title: {
     fontSize: 20,
@@ -190,6 +203,25 @@ const styles = StyleSheet.create({
     fontSize: 20,
     backgroundColor: "white",
     textAlignVertical: "top",
+  },
+  buttonContainer: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 5,
+  },
+  button: {
+    padding: 10,
+    width: "100%",
+    backgroundColor: "#4a86e8",
+    justifyContent: "space-between",
+    borderRadius: 5,
+  },
+  buttonText: {
+    textAlign: "center",
+    color: "white",
+    fontSize: 20,
+    fontWeight: "semi-bold",
   },
 });
 

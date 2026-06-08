@@ -56,7 +56,7 @@ export default function RootLayout() {
             }}
           />
           <Stack.Screen
-            name="addEvent"
+            name="events/addEvent"
             options={{
               title: "Add Event",
               ...defaultOptions,
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   logoutButton: {
-    backgroundColor: "#dc3545",
+    backgroundColor: "#e8954a",
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 4,
