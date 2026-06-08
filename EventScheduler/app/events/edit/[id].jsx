@@ -32,11 +32,11 @@ export default function EventDetails() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      title: event.title || "",
-      date: event.date || "",
-      time: event.time || "",
-      location: event.location || "",
-      description: event.description || "",
+      title: event?.title || "",
+      date: event?.date || "",
+      time: event?.time || "",
+      location: event?.location || "",
+      description: event?.description || "",
     },
   });
 
@@ -47,7 +47,6 @@ export default function EventDetails() {
   //#endregion
 
   //#region Page View
-  // TODO: add edit button which toggles text input avilability to protect from accidental edits
   return (
     <AppView>
       {event ? (

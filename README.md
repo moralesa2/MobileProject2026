@@ -1,3 +1,16 @@
+### For CS235M
+
+App Description: App designed for creating & managing upcoming events; a planner meant for personal use.
+
+App Demo: https://youtu.be/FfdX7wvkgOM
+App Walkthrough:
+
+Secrets (Google doc accessible to those with LCC email, email me at moralesa2@my.lanecc.edu if you can't see this doc. Copy & paste in your .env file before starting the app):
+
+#
+
+### Generated on Project Creation
+
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).

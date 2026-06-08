@@ -21,7 +21,7 @@ export default function EventDetails() {
   const event = events.find((event) => event.id === id);
 
   useEffect(() => {
-    if (!event.location) return;
+    if (!event?.location) return;
 
     // check permissions and geocode event location for map
     const fetchCoords = async () => {
@@ -45,7 +45,7 @@ export default function EventDetails() {
     };
 
     fetchCoords();
-  }, [event.location]);
+  }, [event?.location]);
   //#endregion
 
   //#region Handle delete & confirmation dialog
