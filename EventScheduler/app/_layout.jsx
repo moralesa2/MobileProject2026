@@ -49,6 +49,13 @@ export default function RootLayout() {
             }}
           />
           <Stack.Screen
+            name="events/edit/[id]"
+            options={{
+              title: "Edit Event",
+              ...defaultOptions,
+            }}
+          />
+          <Stack.Screen
             name="addEvent"
             options={{
               title: "Add Event",

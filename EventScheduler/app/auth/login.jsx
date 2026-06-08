@@ -11,6 +11,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import * as Location from "expo-location";
 
 const AuthScreen = () => {
   const { login, register } = useAuth();
@@ -45,7 +46,8 @@ const AuthScreen = () => {
       Alert.alert("Error", response.error);
       return;
     }
-
+    // request location permissions on successful auth to enable map features
+    await Location.requestForegroundPermissionsAsync();
     router.replace("/events");
   };
 
