@@ -1,3 +1,5 @@
+// Event Scheduler - Created by Aubrey Morales 06-12-26
+// Add event
 import React, { useContext, useState, useEffect } from "react";
 import {
   KeyboardAvoidingView,

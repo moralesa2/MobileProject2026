@@ -1,3 +1,5 @@
+// Event Scheduler - Created by Aubrey Morales 06-12-26
+// Calendar displays upcoming events
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import AppText from "@/components/AppText";

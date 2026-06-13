@@ -1,3 +1,5 @@
+// Event Scheduler - Created by Aubrey Morales 06-12-26
+// SQLite database setup & methods
 import React, { createContext, useState, useEffect } from "react";
 import * as SQLite from "expo-sqlite";
 import * as Crypto from "expo-crypto";

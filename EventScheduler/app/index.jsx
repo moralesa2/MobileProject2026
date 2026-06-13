@@ -1,3 +1,6 @@
+// Event Scheduler - Created by Aubrey Morales 06-12-26
+// This program is serves as a place for users to keep and manage their schedules/upcoming events.
+
 import CalendarImage from "@/assets/images/calendar.png";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "expo-router";

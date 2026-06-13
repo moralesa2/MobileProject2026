@@ -1,3 +1,5 @@
+// Event Scheduler - Created by Aubrey Morales 06-12-26
+// Root Layout
 import { Stack } from "expo-router";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { router } from "expo-router";

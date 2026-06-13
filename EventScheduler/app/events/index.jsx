@@ -1,3 +1,5 @@
+// Event Scheduler - Created by Aubrey Morales 06-12-26
+// Display upcoming events in list form
 import React, { useContext, useEffect } from "react";
 import {
   View,

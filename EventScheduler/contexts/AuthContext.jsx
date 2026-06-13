@@ -1,3 +1,5 @@
+// Event Scheduler - Created by Aubrey Morales 06-12-26
+// Authentication
 import { createContext, useContext, useEffect, useState } from "react";
 import authService from "../services/authService";
 
